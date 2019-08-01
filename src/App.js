@@ -14,7 +14,6 @@ export default class App extends Component {
 			concepts: []
 		};
 	}
-	change = e => this.setState({ input: e.target.value });
 	submit = () => {
 		this.setState({ image: this.state.input });
 		app.models
@@ -28,23 +27,24 @@ export default class App extends Component {
 			.then(response => {
 				var concepts = response["outputs"][0]["data"]["concepts"];
 				this.setState({ concepts });
-				console.log(concepts);
 			});
 	};
+	change = e => this.setState({ input: e.target.value });
 	render() {
 		return (
 			<div>
 				<input onChange={this.change} />
 				<button onClick={this.submit}>button</button>
-				<ul>
-					{this.state.concepts.map(item => {
-						return (
+				<img alt="" src={this.state.image} width="500px" />
+				<div>
+					<ul>
+						{this.state.concepts.map(item => (
 							<li key={item.id}>
-								{item.name}, {item.value * 100}%
+								{item.name}, {Math.round(item.value * 100)}%
 							</li>
-						);
-					})}
-				</ul>
+						))}
+					</ul>
+				</div>
 			</div>
 		);
 	}

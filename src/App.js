@@ -8,16 +8,26 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			route: "signin"
+			route: "signin",
+			isSignedIn: false
 		};
 	}
 	onRouteChange = route => {
+		if (route === "signout") {
+			this.setState({ isSignedIn: false });
+		} else if (route === "home") {
+			this.setState({ isSignedIn: true });
+		}
 		this.setState({ route: route });
 	};
+
 	render() {
 		return (
 			<div>
-				<Navbar onRouteChange={this.onRouteChange} />
+				<Navbar
+					isSignedIn={this.state.isSignedIn}
+					onRouteChange={this.onRouteChange}
+				/>
 				{this.state.route === "home" ? (
 					<FaceRec />
 				) : this.state.route === "signin" ? (

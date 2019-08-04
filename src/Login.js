@@ -36,7 +36,16 @@ export default function Register({ onRouteChange }) {
 									placeholder="Password"
 								/>
 							</FormGroup>
-							<Button onClick={() => onRouteChange("home")}>Submit</Button>
+							<Button className="d-block" onClick={() => onRouteChange("home")}>
+								Submit
+							</Button>
+							<Button
+								size="sm"
+								color="link"
+								onClick={() => onRouteChange("register")}
+							>
+								Register
+							</Button>
 						</Form>
 					</Card>
 				</Col>

@@ -18,10 +18,12 @@ export default class App extends Component {
 		return (
 			<div>
 				<Navbar onRouteChange={this.onRouteChange} />
-				{this.state.route === "signin" ? (
+				{this.state.route === "home" ? (
+					<FaceRec />
+				) : this.state.route === "signin" ? (
 					<Login onRouteChange={this.onRouteChange} />
 				) : (
-					<FaceRec />
+					<Register onRouteChange={this.onRouteChange} />
 				)}
 			</div>
 		);

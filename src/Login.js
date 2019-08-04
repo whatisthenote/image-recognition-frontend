@@ -11,25 +11,21 @@ import {
 	Card
 } from "reactstrap";
 
-export default function Register() {
+export default function Register({ onRouteChange }) {
 	return (
 		<Container>
 			<Row className="justify-content-center">
-				<Col xs="7" sm="7" md={{ size: 7 }}>
+				<Col xs="7" sm="7" md="5">
 					<Card className="p-3 mt-5">
 						<Form>
 							<FormGroup>
-								<Label for="email">Email</Label>
+								<Label for="username">Username</Label>
 								<Input
-									type="email"
-									name="email"
-									id="email"
-									placeholder="Email"
+									type="username"
+									name="username"
+									id="username"
+									placeholder="Username"
 								/>
-							</FormGroup>
-							<FormGroup>
-								<Label for="name">Name</Label>
-								<Input type="name" name="name" id="name" placeholder="Name" />
 							</FormGroup>
 							<FormGroup>
 								<Label for="password">Password</Label>
@@ -40,7 +36,7 @@ export default function Register() {
 									placeholder="Password"
 								/>
 							</FormGroup>
-							<Button>Submit</Button>
+							<Button onClick={() => onRouteChange("home")}>Submit</Button>
 						</Form>
 					</Card>
 				</Col>

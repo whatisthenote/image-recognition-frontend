@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FaceRec from "./FaceRec";
 import Register from "./Register";
+import Navbar from "./Navbar";
+import Login from "./Login";
 
 export default class App extends Component {
 	constructor(props) {
@@ -9,16 +11,15 @@ export default class App extends Component {
 			route: "signin"
 		};
 	}
-
-	onRouteChange = () => {
-		this.setState({ route: "home" });
+	onRouteChange = route => {
+		this.setState({ route: route });
 	};
-
 	render() {
 		return (
 			<div>
+				<Navbar onRouteChange={this.onRouteChange} />
 				{this.state.route === "signin" ? (
-					<Register onRouteChange={this.onRouteChange} />
+					<Login onRouteChange={this.onRouteChange} />
 				) : (
 					<FaceRec />
 				)}

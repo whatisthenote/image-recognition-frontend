@@ -55,8 +55,8 @@ export default class FaceRec extends Component {
 		return (
 			<Container>
 			<div className="p-3">
-				<Input onChange={this.change} />
-				<Button color="dark" size="sm" onClick={this.submit}>
+				<Input className="m-1" onChange={this.change} />
+				<Button className="m-1" color="dark" size="sm" onClick={this.submit}>
 					button
 				</Button>
 				<div style={{ position: "absolute" }}>

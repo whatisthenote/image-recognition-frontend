@@ -11,7 +11,7 @@ import {
 	Card
 } from "reactstrap";
 
-export default function Register({ onRouteChange }) {
+export default function Register() {
 	return (
 		<Container>
 			<Row className="justify-content-center">
@@ -36,14 +36,8 @@ export default function Register({ onRouteChange }) {
 									placeholder="Password"
 								/>
 							</FormGroup>
-							<Button className="d-block" onClick={() => onRouteChange("home")}>
-								Submit
-							</Button>
-							<Button
-								size="sm"
-								color="link"
-								onClick={() => onRouteChange("register")}
-							>
+							<Button className="d-block">Submit</Button>
+							<Button size="sm" color="link">
 								Register
 							</Button>
 						</Form>

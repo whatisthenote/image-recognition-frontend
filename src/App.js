@@ -8,17 +8,26 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			route: "signin"
+			route: "signin",
+			isSignedIn: false
 		};
 	}
 	routeChange = route => {
+		if (route === "home") {
+			this.setState({ isSignedIn: true });
+		} else {
+			this.setState({ isSignedIn: false });
+		}
 		this.setState({ route });
 	};
 	render() {
 		const { route } = this.state;
 		return (
 			<div>
-				<Navbar routeChange={this.routeChange} />
+				<Navbar
+					isSignedIn={this.state.isSignedIn}
+					routeChange={this.routeChange}
+				/>
 				{route === "signin" ? (
 					<Login routeChange={this.routeChange} />
 				) : route === "home" ? (

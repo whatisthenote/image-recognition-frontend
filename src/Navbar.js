@@ -1,11 +1,13 @@
 import React from "react";
 import { Nav, NavLink } from "reactstrap";
 
-export default function Navbar() {
+export default function Navbar({ routeChange }) {
 	return (
 		<div>
 			<Nav>
-				<NavLink href="#">Sign out</NavLink>
+				<NavLink onClick={() => routeChange("signin")} href="#">
+					Sign out
+				</NavLink>
 			</Nav>
 			<hr />
 		</div>

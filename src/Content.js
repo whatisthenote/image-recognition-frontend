@@ -12,6 +12,6 @@ export default function Content({ route, routeChange }) {
 		case "home":
 			return <FaceRec />;
 		default:
-			return <h1>Error</h1>;
+			return <h3>Error</h3>;
 	}
 }

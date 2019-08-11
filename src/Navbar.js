@@ -1,12 +1,12 @@
 import React from "react";
 import { Nav, NavLink } from "reactstrap";
 
-export default function Navbar({ route }) {
+export default function Navbar({ route, routeChange }) {
 	if (route === "home") {
 		return (
 			<div>
 				<Nav>
-					<NavLink href="#">Sign out</NavLink>
+					<NavLink onClick={() => routeChange("signin")} href="#">Sign out</NavLink>
 				</Nav>
 				<hr />
 			</div>
@@ -15,8 +15,8 @@ export default function Navbar({ route }) {
 		return (
 			<div>
 				<Nav>
-					<NavLink href="#">Register</NavLink>
-					<NavLink href="#">About</NavLink>
+					<NavLink onClick={() => routeChange("register")}  href="#">Register</NavLink>
+					<NavLink onClick={() => routeChange("about")}  href="#">About</NavLink>
 				</Nav>
 				<hr />
 			</div>

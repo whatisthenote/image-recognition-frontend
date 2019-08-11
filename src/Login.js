@@ -17,7 +17,7 @@ export default function Register({ routeChange }) {
 			<Row className="justify-content-center">
 				<Col xs="7" sm="7" md="5">
 					<Card className="p-3 mt-5">
-						<Form>
+						<Form method="post">
 							<FormGroup>
 								<Label for="username">Username</Label>
 								<Input

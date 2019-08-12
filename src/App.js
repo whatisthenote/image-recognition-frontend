@@ -9,6 +9,11 @@ export default class App extends Component {
 			route: "signin"
 		};
 	}
+	// componentDidMount() {
+	// 	fetch("http://localhost:3000/")
+	// 		.then(res => res.json())
+	// 		.then(console.log);
+	// }
 	routeChange = route => this.setState({ route });
 	render() {
 		return (

@@ -30,11 +30,6 @@ export default class App extends Component {
 			}
 		});
 	};
-	// componentDidMount() {
-	// 	fetch("http://localhost:3000/")
-	// 		.then(res => res.json())
-	// 		.then(console.log);
-	// }
 	routeChange = route => this.setState({ route });
 	render() {
 		return (
@@ -44,6 +39,7 @@ export default class App extends Component {
 					loaduser={this.loaduser}
 					routeChange={this.routeChange}
 					route={this.state.route}
+					user={this.state.user}
 				/>
 			</div>
 		);

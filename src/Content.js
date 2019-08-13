@@ -3,14 +3,14 @@ import FaceRec from "./FaceRec";
 import Register from "./Register";
 import Login from "./Login";
 
-export default function Content({ route, routeChange, loaduser }) {
+export default function Content({ route, routeChange, loaduser, user }) {
 	switch (route) {
 		case "signin":
-			return <Login routeChange={routeChange} />;
+			return <Login loaduser={loaduser} routeChange={routeChange} />;
 		case "register":
 			return <Register loaduser={loaduser} routeChange={routeChange} />;
 		case "home":
-			return <FaceRec />;
+			return <FaceRec user={user} loaduser={loaduser} />;
 		default:
 			return <h3>Error</h3>;
 	}

@@ -35,11 +35,9 @@ export default class Register extends Component {
 		})
 			.then(res => res.json())
 			.then(user => {
-				if (user) {
-					this.props.loaduser(user);
-					this.props.routeChange("home");
-					console.log(user)
-				}
+				this.props.loaduser(user);
+				this.props.routeChange("home");
+				console.log(user);
 			});
 	};
 

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Clarifai from "clarifai";
 import "./box.css";
-import { Button, Input,Container } from "reactstrap";
+import { Button, Input, Container } from "reactstrap";
+import Entries from "./Entries";
 
 const app = new Clarifai.App({
 	apiKey: "de6c435c4bc94e4394563714d9928850"
 });
 // https://portal.clarifai.com/cms-assets/20180320222304/demographics-001.jpg
-
 
 export default class FaceRec extends Component {
 	constructor(props) {
@@ -29,6 +29,20 @@ export default class FaceRec extends Component {
 				return generalModel.predict(this.state.image);
 			})
 			.then(response => {
+				if (response) {
+					fetch("http://localhost:3000/image", {
+						method: "put",
+						headers: { "Content-type": "application/json" },
+						body: JSON.stringify({
+							id: this.props.user.id
+						})
+					})
+						.then(res => res.json())
+						.then(count => {
+							this.props.loaduser(count);
+						});
+				}
+
 				this.boundingBox(this.faceLocation(response));
 			});
 	};
@@ -37,8 +51,6 @@ export default class FaceRec extends Component {
 		let image = document.getElementById("image");
 		let width = image.width;
 		let height = image.height;
-		console.log(width, height);
-		console.log(clarifaiFace);
 		return {
 			left: clarifaiFace.left_col * width,
 			top: clarifaiFace.top_row * height,
@@ -48,31 +60,30 @@ export default class FaceRec extends Component {
 	};
 	boundingBox = box => {
 		this.setState({ box });
-		console.log(box);
 	};
 	render() {
 		var { box } = this.state;
 		return (
 			<Container>
-			<div className="p-3">
-				<Input className="m-1" onChange={this.change} />
-				<Button className="m-1" color="dark" size="sm" onClick={this.submit}>
-					button
-				</Button>
-				<div style={{ position: "absolute" }}>
-					<img width="600px" alt="" id="image" src={this.state.image} />
-					<div
-						className="bounding-box"
-						style={{
-							top: box.top,
-							right: box.right,
-							bottom: box.bottom,
-							left: box.left
-						}}
-					/>
+				<Entries user={this.props.user} />
+				<div className="p-3">
+					<Input className="m-1" onChange={this.change} />
+					<Button className="m-1" color="dark" size="sm" onClick={this.submit}>
+						button
+					</Button>
+					<div style={{ position: "absolute" }}>
+						<img width="600px" alt="" id="image" src={this.state.image} />
+						<div
+							className="bounding-box"
+							style={{
+								top: box.top,
+								right: box.right,
+								bottom: box.bottom,
+								left: box.left
+							}}
+						/>
+					</div>
 				</div>
-			</div>
-
 			</Container>
 		);
 	}

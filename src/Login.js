@@ -15,18 +15,18 @@ export default class Register extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
+			email: "",
 			password: ""
 		};
 	}
-	usernameChange = event => this.setState({ name: event.target.value });
+	emailChange = event => this.setState({ email: event.target.value });
 	passwordChange = event => this.setState({ password: event.target.value });
 	submit = () => {
 		fetch("http://localhost:3000/signin", {
 			method: "post",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify({
-				name: this.state.name,
+				email: this.state.email,
 				password: this.state.password
 			})
 		})
@@ -48,13 +48,13 @@ export default class Register extends Component {
 						<Card className="p-3 mt-5">
 							<Form method="post">
 								<FormGroup>
-									<Label for="username">Username</Label>
+									<Label for="email">Email</Label>
 									<Input
-										type="username"
-										name="username"
-										id="username"
-										placeholder="Username"
-										onChange={this.usernameChange}
+										type="email"
+										name="email"
+										id="email"
+										placeholder="Email"
+										onChange={this.emailChange}
 									/>
 								</FormGroup>
 								<FormGroup>

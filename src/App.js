@@ -30,6 +30,13 @@ export default class App extends Component {
 			}
 		});
 	};
+	incrementEntries = entries =>
+		this.setState(prevState => ({
+			user: {
+				...prevState.user,
+				entries
+			}
+		}));
 	routeChange = route => this.setState({ route });
 	render() {
 		return (
@@ -40,6 +47,7 @@ export default class App extends Component {
 					routeChange={this.routeChange}
 					route={this.state.route}
 					user={this.state.user}
+					incrementEntries={this.incrementEntries}
 				/>
 			</div>
 		);

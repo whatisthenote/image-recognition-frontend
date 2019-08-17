@@ -32,11 +32,11 @@ export default class Register extends Component {
 		})
 			.then(res => res.json())
 			.then(data => {
-				if (data === "not found") {
-					this.props.routeChange("error");
-				} else if (data) {
+				if (data.id) {
 					this.props.routeChange("home");
 					this.props.loaduser(data);
+				} else {
+					this.props.routeChange("error");
 				}
 			});
 	};

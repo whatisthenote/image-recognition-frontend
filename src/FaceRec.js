@@ -39,7 +39,7 @@ export default class FaceRec extends Component {
 					})
 						.then(res => res.json())
 						.then(count => {
-							this.props.loaduser(count);
+							this.props.incrementEntries(count);
 						});
 				}
 

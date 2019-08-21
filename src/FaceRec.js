@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import Clarifai from "clarifai";
 import "./box.css";
 import { Button, Input, Container } from "reactstrap";
 import Entries from "./Entries";
 
-const app = new Clarifai.App({
-	apiKey: "de6c435c4bc94e4394563714d9928850"
-});
 // https://portal.clarifai.com/cms-assets/20180320222304/demographics-001.jpg
 
 export default class FaceRec extends Component {
@@ -21,13 +17,14 @@ export default class FaceRec extends Component {
 	change = e => this.setState({ input: e.target.value });
 	submit = () => {
 		this.setState({ image: this.state.input });
-		app.models
-			.initModel({
-				id: Clarifai.FACE_DETECT_MODEL
+		fetch("http://localhost:3000/imageurl", {
+			method: "post",
+			headers: { "Content-type": "application/json" },
+			body: JSON.stringify({
+				input: this.state.input
 			})
-			.then(generalModel => {
-				return generalModel.predict(this.state.image);
-			})
+		})
+			.then(response => response.json())
 			.then(response => {
 				if (response) {
 					fetch("http://localhost:3000/image", {
@@ -38,11 +35,8 @@ export default class FaceRec extends Component {
 						})
 					})
 						.then(res => res.json())
-						.then(count => {
-							this.props.incrementEntries(count);
-						});
+						.then(count => this.props.incrementEntries(count));
 				}
-
 				this.boundingBox(this.faceLocation(response));
 			});
 	};
@@ -58,9 +52,7 @@ export default class FaceRec extends Component {
 			bottom: height - clarifaiFace.bottom_row * height
 		};
 	};
-	boundingBox = box => {
-		this.setState({ box });
-	};
+	boundingBox = box => this.setState({ box });
 	render() {
 		var { box } = this.state;
 		return (

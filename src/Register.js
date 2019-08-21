@@ -24,7 +24,7 @@ export default class Register extends Component {
 	nameChange = e => this.setState({ name: e.target.value });
 	passwordChange = e => this.setState({ password: e.target.value });
 	submit = () => {
-		fetch("http://localhost:3000/register", {
+		fetch("https://evening-wave-83837.herokuapp.com/register", {
 			method: "post",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify({

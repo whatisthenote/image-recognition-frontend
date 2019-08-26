@@ -2,7 +2,6 @@ import React from "react";
 import FaceRec from "./FaceRec";
 import Register from "./Register";
 import Login from "./Login";
-import Background from "./Background";
 
 export default function Content({
 	route,
@@ -13,13 +12,7 @@ export default function Content({
 }) {
 	switch (route) {
 		case "signin":
-			return (
-				<div>
-					<Login loaduser={loaduser} routeChange={routeChange} />
-					<Background></Background>
-				</div>
-			);
-
+			return <Login loaduser={loaduser} routeChange={routeChange} />;
 		case "register":
 			return <Register loaduser={loaduser} routeChange={routeChange} />;
 		case "home":
